@@ -8,9 +8,9 @@ Download [Docker Desktop](https://www.docker.com/products/docker-desktop/) to be
 
 ```docker compose up```
 
-This will fire up the nginx container + 2 instances of the application to simulate packages being server from multiple VM instances.
+This will fire up the nginx container + 2 instances of the application to simulate packages being served from multiple VM instances.
 
 Webapp can be accessed at: http://localhost:8080/
 
 If you take a look at the calls in DevTools -> Network tab, you can see X-Instance-Id in the Response Headers. It either can be server1
-or server2. That marks which instance server the request. Also see that nonce differs on each request.
+or server2. That marks which instance served the request. Also, you can see that nonce differs on each request.
