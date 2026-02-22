@@ -1,0 +1,9 @@
+﻿<!--Meta tag to have a fallback if no script is added to the page (unlikely)-->
+<meta name="csp-nonce" content="@Context.Items["CSP-Nonce"]" />
+<h1>AJAX Loaded HTML</h1>
+
+<!--Container where the AJAX loaded html will be placed-->
+<div id="ajaxloadedhtml"></div>
+
+<!--Script that loads html via AJAX-->
+<script src="~/js/ajaxloadedhtml.js" nonce="@Context.Items["CSP-Nonce"]"></script>

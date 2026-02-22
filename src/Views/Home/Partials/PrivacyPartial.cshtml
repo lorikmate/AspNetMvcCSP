@@ -1,0 +1,14 @@
+﻿<h1>Privacy partial page</h1>
+
+<script nonce="@Context.Items["CSP-Nonce"]">
+    console.log('partial loaded');
+
+    // cannot move nonce to a const nonce = ... variable as it will throw
+    // already been declared error even if they are in different <script> tags
+    // as ViewComponent and Partial will both insert this codepart into the page
+
+    $.getScript("/js/myscript1.js", @Html.Raw(Json.Serialize(Context.Items["CSP-Nonce"])))
+        .then(() => $.getScript("/js/myscript2.js", @Html.Raw(Json.Serialize(Context.Items["CSP-Nonce"]))));
+</script>
+
+<script src="~/js/myscript1.js" nonce="@Context.Items["CSP-Nonce"]"></script>

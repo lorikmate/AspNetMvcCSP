@@ -1,0 +1,25 @@
+services:
+  server1:
+    build: .
+    container_name: server1
+    environment:
+      - INSTANCE_ID=server1
+
+  server2:
+    build: .
+    container_name: server2
+    environment:
+      - INSTANCE_ID=server2
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - 8080:80
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      - server1
+      - server2
+  
+
+

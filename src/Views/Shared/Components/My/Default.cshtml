@@ -1,0 +1,23 @@
+﻿@model List<string>
+
+<div>
+    <h1>View Component</h1>
+    <ul>
+        @foreach (var li in Model)
+        {
+            <li>@li</li>
+        }
+    </ul>
+</div>
+
+<script nonce="@Context.Items["CSP-Nonce"]">
+    console.log('view component loaded');
+    
+    //Same as partial, can't have nonce in a variable, only if their name differs as
+    //Partial and ViewComponent are loaded into the same page
+
+    $.getScript("/js/myscript1.js", @Html.Raw(Json.Serialize(Context.Items["CSP-Nonce"])))
+        .then(() => $.getScript("/js/myscript2.js", @Html.Raw(Json.Serialize(Context.Items["CSP-Nonce"]))));
+</script>
+
+<script src="~/js/myscript1.js" nonce="@Context.Items["CSP-Nonce"]"></script>

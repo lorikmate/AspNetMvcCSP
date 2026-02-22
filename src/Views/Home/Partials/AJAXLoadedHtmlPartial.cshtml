@@ -1,0 +1,13 @@
+﻿<h2>AJAX Loaded Partial page</h2>
+
+<script nonce="@Context.Items["CSP-Nonce"]">
+    console.log('ajax html partial loaded');
+
+    // use parent script's nonce as it has proper nonce injected on html ajax load
+    const nonce = document.currentScript.nonce;
+
+    $.getScript("/js/myscript1.js", nonce)
+        .then(() => $.getScript("/js/myscript2.js", nonce));
+</script>
+
+<script src="~/js/myscript1.js" nonce="@Context.Items["CSP-Nonce"]"></script>
